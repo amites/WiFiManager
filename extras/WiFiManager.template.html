@@ -19,6 +19,7 @@
 <!-- HTTP_SCRIPT -->
 		<script>
 			function c(l){document.getElementById('s').value=l.innerText||l.textContent;document.getElementById('p').focus();}
+      function eP(){document.getElementById('p').value=btoa(document.getElementById('p').value)}
 		</script>
 <!-- /HTTP_SCRIPT -->
 <!-- HTTP_HEAD_END -->
@@ -55,13 +56,13 @@
 			<div><a href='#p' onclick='c(this)'>{v}</a>&nbsp;<span class='q {i}'>{r}%</span></div>
 			<!-- /HTTP_ITEM -->
 			<!-- HTTP_FORM_START -->
-			<form method='get' action='wifisave'><input id='s' name='s' length=32 placeholder='SSID'><br/><input id='p' name='p' length=64 type='password' placeholder='password'><br/>
+			<form method='get' action='wifisave' enctype='multipart/form-data'><input id='s' name='s' length=32 placeholder='SSID'><br/><input id='p' name='p' length=64 type='password' placeholder='password'><br/>
 			<!-- /HTTP_FORM_START -->
 			<!-- HTTP_FORM_PARAM -->
 			<br/><input id='{i}' name='{n}' length='{l}' placeholder='{p}' value='{v}' {c}>
 			<!-- /HTTP_FORM_PARAM -->
 			<!-- HTTP_FORM_END -->
-			<br/><button type='submit'>save</button></form>
+			<br/><button type='submit' onclick='eP();'>save</button></form>
 			<!-- /HTTP_FORM_END -->
 			<!-- HTTP_SCAN_LINK -->
 			<br/><div class=\"c\"><a href=\"/wifi\">Scan</a></div>
