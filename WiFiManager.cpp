@@ -203,7 +203,7 @@ boolean  WiFiManager::startConfigPortal(char const *apName, char const *apPasswo
     WiFi.disconnect(); //  this alone is not enough to stop the autoconnecter
     WiFi.mode(WIFI_AP);
     WiFi.persistent(true);
-  } 
+  }
   else {
     //setup AP
     WiFi.mode(WIFI_AP_STA);
@@ -277,6 +277,8 @@ boolean  WiFiManager::startConfigPortal(char const *apName, char const *apPasswo
 
 int WiFiManager::connectWifi(String ssid, String pass) {
   DEBUG_WM(F("Connecting as wifi client..."));
+  DEBUG_WM(ssid);
+  DEBUG_WM(pass);
 
   // check if we've got static_ip settings, if we do, use those.
   if (_sta_static_ip) {
@@ -293,17 +295,17 @@ int WiFiManager::connectWifi(String ssid, String pass) {
   if (ssid != "") {
     WiFi.begin(ssid.c_str(), pass.c_str());
   } else {
-    if (WiFi.SSID()) {
-      DEBUG_WM("Using last saved values, should be faster");
-      //trying to fix connection in progress hanging
-      ETS_UART_INTR_DISABLE();
-      wifi_station_disconnect();
-      ETS_UART_INTR_ENABLE();
-
-      WiFi.begin();
-    } else {
+    // if (WiFi.SSID()) {
+    //   DEBUG_WM("Using last saved values, should be faster");
+    //   //trying to fix connection in progress hanging
+    //   ETS_UART_INTR_DISABLE();
+    //   wifi_station_disconnect();
+    //   ETS_UART_INTR_ENABLE();
+    //
+    //   WiFi.begin();
+    // } else {
       DEBUG_WM("No saved credentials");
-    }
+    // }
   }
 
   int connRes = waitForConnectResult();
